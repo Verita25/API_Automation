@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.7 on darwin)" generated="20231212 14:34:31.302" rpa="false" schemaversion="4">
+<suite id="s1" name="Header" source="/Users/anshulkumar/PycharmProjects/APIAutomation/TestSuite/TestCases/Header.robot">
+<test id="s1-t1" name="Adding a new user using Post-API method" line="15">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231212 14:34:31.369" level="INFO">Creating Session using : alias=mysession, url=https://demoqa.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20231212 14:34:31.369" endtime="20231212 14:34:31.369"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231212 14:34:31.370" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20231212 14:34:31.370" endtime="20231212 14:34:31.370"/>
+</kw>
+<kw name="Get File" library="OperatingSystem">
+<var>${payload}</var>
+<arg>${json_file}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20231212 14:34:31.370" level="INFO" html="true">Getting file '&lt;a href="file:///Users/anshulkumar/PycharmProjects/APIAutomation/Resources/JSON.json"&gt;/Users/anshulkumar/PycharmProjects/APIAutomation/Resources/JSON.json&lt;/a&gt;'.</msg>
+<msg timestamp="20231212 14:34:31.370" level="INFO">${payload} = {
+  "userName": "servicemaxeruser10",
+  "password": "Test@123"
+}
+
+</msg>
+<status status="PASS" starttime="20231212 14:34:31.370" endtime="20231212 14:34:31.370"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${extended_url}</arg>
+<arg>data=${payload}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20231212 14:34:31.667" level="INFO">POST Request : url=https://demoqa.com/Account/v1/User 
+ path_url=/Account/v1/User 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '66'} 
+ body={
+  "userName": "servicemaxeruser10",
+  "password": "Test@123"
+}
+
+ 
+ </msg>
+<msg timestamp="20231212 14:34:31.667" level="INFO">POST Response : url=https://demoqa.com/Account/v1/User 
+ status=201, reason=Created 
+ headers={'Server': 'nginx/1.17.10 (Ubuntu)', 'Date': 'Tue, 12 Dec 2023 14:34:31 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '92', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'ETag': 'W/"5c-iO70Vg86WGSOEVJw58OMD/VjCGM"'} 
+ body={"userID":"c1e6eba3-a9e5-4ec2-8976-1049a4388110","username":"servicemaxeruser10","books":[]} 
+ </msg>
+<msg timestamp="20231212 14:34:31.667" level="INFO">/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/urllib3/connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'demoqa.com'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg timestamp="20231212 14:34:31.667" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20231212 14:34:31.370" endtime="20231212 14:34:31.667"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231212 14:34:31.668" endtime="20231212 14:34:31.668"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231212 14:34:31.668" endtime="20231212 14:34:31.669"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231212 14:34:31.669" endtime="20231212 14:34:31.669"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20231212 14:34:31.670" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20231212 14:34:31.670" endtime="20231212 14:34:31.670"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20231212 14:34:31.671" level="INFO">${body} = {"userID":"c1e6eba3-a9e5-4ec2-8976-1049a4388110","username":"servicemaxeruser10","books":[]}</msg>
+<status status="PASS" starttime="20231212 14:34:31.670" endtime="20231212 14:34:31.671"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${body}</arg>
+<arg>servicemaxeruser10</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20231212 14:34:31.671" endtime="20231212 14:34:31.671"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" starttime="20231212 14:34:31.671" endtime="20231212 14:34:31.671"/>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<var>${json_obj}</var>
+<arg>${response.content}</arg>
+<doc>*DEPRECATED* Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</doc>
+<msg timestamp="20231212 14:34:31.672" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+<msg timestamp="20231212 14:34:31.672" level="INFO">To JSON using : content={"userID":"c1e6eba3-a9e5-4ec2-8976-1049a4388110","username":"servicemaxeruser10","books":[]} </msg>
+<msg timestamp="20231212 14:34:31.672" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20231212 14:34:31.672" level="INFO">${json_obj} = {'userID': 'c1e6eba3-a9e5-4ec2-8976-1049a4388110', 'username': 'servicemaxeruser10', 'books': []}</msg>
+<status status="PASS" starttime="20231212 14:34:31.672" endtime="20231212 14:34:31.672"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${user_details}</var>
+<arg>json.loads('''${json_obj['userID']}''')</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231212 14:34:31.673" level="INFO">${user_details} = json.loads('''c1e6eba3-a9e5-4ec2-8976-1049a4388110''')</msg>
+<status status="PASS" starttime="20231212 14:34:31.672" endtime="20231212 14:34:31.673"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${user_details}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231212 14:34:31.673" endtime="20231212 14:34:31.673"/>
+</kw>
+<tag>TC1</tag>
+<status status="PASS" starttime="20231212 14:34:31.369" endtime="20231212 14:34:31.673"/>
+</test>
+<status status="PASS" starttime="20231212 14:34:31.303" endtime="20231212 14:34:31.673"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">TC1</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Header">Header</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20231212 14:34:31.672" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+</errors>
+</robot>
